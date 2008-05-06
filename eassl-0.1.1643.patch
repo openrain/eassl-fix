@@ -1,0 +1,34 @@
+diff -ru eassl-0.1.1643/lib/eassl/certificate_name.rb eassl-0.1.1643.fixed/lib/eassl/certificate_name.rb
+--- eassl-0.1.1643/lib/eassl/certificate_name.rb	2007-09-05 19:22:29.000000000 +0000
++++ eassl-0.1.1643.fixed/lib/eassl/certificate_name.rb	2007-09-05 19:21:40.000000000 +0000
+@@ -29,5 +29,9 @@
+         ['emailAddress',  @options[:email],        OpenSSL::ASN1::UTF8STRING]
+       ])
+     end
++
++    def options
++        @options
++    end
+   end
+-end
+\ No newline at end of file
++end
+diff -ru eassl-0.1.1643/lib/eassl/signing_request.rb eassl-0.1.1643.fixed/lib/eassl/signing_request.rb
+--- eassl-0.1.1643/lib/eassl/signing_request.rb	2007-09-05 19:22:29.000000000 +0000
++++ eassl-0.1.1643.fixed/lib/eassl/signing_request.rb	2007-09-05 18:30:00.000000000 +0000
+@@ -18,7 +18,7 @@
+       unless @ssl
+         @ssl = OpenSSL::X509::Request.new
+         @ssl.version = 0
+-        @ssl.subject = CertificateName.new(@options[:name]).ssl
++        @ssl.subject = CertificateName.new(@options[:name].options).ssl
+         @ssl.public_key = key.public_key
+         @ssl.sign(key.private_key, OpenSSL::Digest::MD5.new)
+       end
+@@ -48,4 +48,4 @@
+       self
+     end
+   end
+-end
+\ No newline at end of file
++end

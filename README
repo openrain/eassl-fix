@@ -1,0 +1,10 @@
+EasslFix
+========
+
+This plugin fixes the b0rked behavior of EaSSL::SigningRequest v0.1.1643.
+Just drop this directory in vendor/plugins, and the offending code will be monkeypatched when the this plugin loads.
+
+w00t.
+
+Contact: PrestonLee.com <preston.lee@openrain.com>
+Hire: OpenRain.com
